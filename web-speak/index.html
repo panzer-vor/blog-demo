@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>语音播报</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <button onclick="speak()">点击播报</button>
+    <input type="text" value="语音播报">
+    <script>  
+      const input = document.querySelector('input')
+      const voiceList = window.speechSynthesis.getVoices()
+      function speak() {
+        const text = input.value
+        const voice = voiceList.filter(v => v.name.indexOf('Chinese(Simplified)(zh-CN)') > -1)[0]
+        const speakInstance = new SpeechSynthesisUtterance(text)
+        speakInstance.voice = voice
+        window.speechSynthesis.speak(speakInstance)
+      }
+    </script>
+</body>
+</html>
